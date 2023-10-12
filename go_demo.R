@@ -35,7 +35,7 @@ go_demo<-function(genesymbol,ntop=10,plot=T){
       coord_flip()+theme_bw()+ 
       scale_x_discrete(labels = function(x) str_wrap(x,width = 50))+ 
       labs(x = "GO terms",y = "GeneNumber",title = "Barplot of Enriched GO Terms")+ 
-      theme(text=element_text(size=18), axis.text.x = element_text(size = 10),
+      theme(text=element_text(size=18), axis.text.y = element_text(size = 10),
             plot.title = element_text(size = 14,hjust = 0.5,face = "bold"), 
             plot.margin = unit(c(0.5,0.5,0.5,0.5),"cm"))+scale_fill_aaas()
       #ggsave(go_bar,filename = "GO_Barplot.pdf",width = 9,height = 7)
