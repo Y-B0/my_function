@@ -28,7 +28,7 @@ limma_after_normalized<-function(exp,group,compare,normalize=F,log2=F,merge=F,rn
   exp<-exp[,rownames(design)]
 
   fit <- lmFit(exp,design)
-  contrast.matrix = makeContrasts(eval(paste(colnames(design),collapse = "-")),levels = design)
+  contrast.matrix = makeContrasts(compare,levels = design)
   
   fit2 <- contrasts.fit(fit, contrast.matrix)
   fit2 <- eBayes(fit2)
