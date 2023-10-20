@@ -2,7 +2,7 @@
 limma_after_normalized<-function(exp,group,compare,normalize=F,log2=F,merge=F,rna.count=F,symbol.name="SYMBOL"){
   ## exp is expression data (if merge==T,exp need a col to contain gene symbol)
   ## group can be multi group ,and first col is sample name; second col is condition; coef, and multi used to select multi group
-  ## compare used to identify which group vs which group (usually <conventional>-<control>). also use for multi group condition.
+  ## compare used to identify which group vs which group (usually <conventional> - <control>). also use for multi group condition.
   
   if (merge==T) {
     expr = aggregate(expr, by=list(expr[,symbol.name]),mean)
@@ -28,10 +28,10 @@ limma_after_normalized<-function(exp,group,compare,normalize=F,log2=F,merge=F,rn
   exp<-exp[,rownames(design)]
 
   fit <- lmFit(exp,design)
-  contrast.matrix = makeContrasts(compare,levels = design)
+  contrast.matrix <- makeContrasts(compare,levels = design)
   
   fit2 <- contrasts.fit(fit, contrast.matrix)
   fit2 <- eBayes(fit2)
-  output <- topTable(fit2,n=Inf)
+  output <- topTable(fit2,coef = compare,n=Inf)
   return(output)
 }
