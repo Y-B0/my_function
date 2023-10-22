@@ -1,4 +1,4 @@
-ssgsea_deom<-function(exp,pathway=NULL,species=="Homo sapiens"){
+ssgsea_deom<-function(exp,pathway=NULL,species="Homo sapiens"){
   library(msigdbr)
   library(GSVA)
   ### exp is a expression data with gene symbol as rowname and sample name as colname
