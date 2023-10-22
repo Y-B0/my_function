@@ -7,6 +7,7 @@ ssgsea_deom<-function(exp,pathway=NULL,species=="Homo sapiens"){
   if (pathway==NULL) {
     pathway <- msigdbr(species = species, category = "C2", subcategory = "KEGG")
     pathway <- pathway %>% split(x = .$gene_symbol, f = .$gs_name)
+    names(pathway) <- gsub("KEGG_","",names(pathway))%>%gsub("_"," ",.)
   }
 
   gs.exp <- gsva(as.matrix(exprSet),pathway, method = "gsva")
