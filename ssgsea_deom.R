@@ -5,9 +5,13 @@ ssgsea_deom<-function(exp,pathway=NULL,species="Homo sapiens",category="C2",subc
   ### pathway is the gene sets list, if pathway is NULL it will default as kegg for human
   ### species, category and subcategory are name in msigdbr (msigdbr)
   
-  pathway <- msigdbr(species = species, category = "C2", subcategory = "KEGG")
-  pathway <- pathway %>% split(x = .$gene_symbol, f = .$gs_name)
-  names(pathway) <- gsub("KEGG_","",names(pathway))%>%gsub("_"," ",.)
+  if (pathway==NULL) {
+    pathway <- msigdbr(species = species, category = "C2", subcategory = "KEGG")
+    pathway <- pathway %>% split(x = .$gene_symbol, f = .$gs_name)
+    names(pathway) <- gsub("KEGG_","",names(pathway))%>%gsub("_"," ",.)
+  }else {
+    pathway=pathway
+  }
 
   gs.exp <- gsva(as.matrix(exprSet),pathway, method = "gsva")
 
