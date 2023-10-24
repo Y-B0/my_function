@@ -1,9 +1,10 @@
-ssgsea_deom<-function(exp,pathway=NULL,species="Homo sapiens",category="C2",subcategory="KEGG"){
+ssgsea_deom<-function(exp,pathway=NULL,method="gsva",species="Homo sapiens",category="C2",subcategory="KEGG"){
   library(msigdbr)
   library(GSVA)
   ### exp is a expression data with gene symbol as rowname and sample name as colname
   ### pathway is the gene sets list, if pathway is NULL it will default as kegg for human
   ### species, category and subcategory are name in msigdbr (msigdbr)
+  ### method can choose from ssgsea or gsva
   
   if (is.null(pathway)) {
     pathway <- msigdbr(species = species, category = "C2", subcategory = "KEGG")
@@ -13,6 +14,6 @@ ssgsea_deom<-function(exp,pathway=NULL,species="Homo sapiens",category="C2",subc
     pathway=pathway
   }
 
-  gs.exp <- gsva(as.matrix(exprSet),pathway, method = "gsva")
+  gs.exp <- gsva(as.matrix(exprSet),pathway, method = method)
 
 }
