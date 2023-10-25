@@ -14,6 +14,6 @@ ssgsea_deom<-function(exp,pathway=NULL,method="gsva",species="Homo sapiens",cate
     pathway=pathway
   }
 
-  gs.exp <- gsva(as.matrix(exprSet),pathway, method = method)
+  gs.exp <- gsva(as.matrix(exp),pathway, method = method)
 
 }
