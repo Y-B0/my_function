@@ -4,7 +4,7 @@ surv <- function(expr,group){
   ### expr is the data frame contain the expression of variates group and time, status. keep in mind ,the colname of time and status must be 'time' and 'status'
   ### group are the colname that need to be compared group in expr
   model<-as.formula(paste('Surv(time, status)~', group))
-  fit <- survfit(eval(parse(text = model)), data = expr)
+  fit <- survfit(model, data = expr)
   
   p <- ggsurvplot(fit,data = expr,
              pval = TRUE, conf.int = TRUE,
