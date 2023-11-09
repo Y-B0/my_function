@@ -1,4 +1,4 @@
-go_demo<-function(genesymbol,ntop=10,plot=T){
+go_demo<-function(genesymbol,ntop=10,plot=T,species=org.Hs.eg.db){
   library(clusterProfiler) 
   library(stringr) 
   library(AnnotationDbi)
@@ -7,11 +7,11 @@ go_demo<-function(genesymbol,ntop=10,plot=T){
   library(ggplot2) 
   library(ggrepel) 
   library(ggsci)
-  id_list <- mapIds(org.Hs.eg.db,genesymbol,"ENTREZID","SYMBOL")
+  id_list <- mapIds(species,genesymbol,"ENTREZID","SYMBOL")
   id_list <- na.omit(id_list)
   
   go <- enrichGO(gene = id_list,
-                 OrgDb = org.Hs.eg.db, 
+                 OrgDb = species, 
                  keyType = "ENTREZID",
                  ont = "ALL", 
                  pAdjustMethod = "BH", 
