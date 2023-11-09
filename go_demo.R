@@ -3,6 +3,7 @@ go_demo<-function(genesymbol,ntop=10,plot=T,species=org.Hs.eg.db){
   library(stringr) 
   library(AnnotationDbi)
   library(org.Hs.eg.db) 
+  library(org.Mm.eg.db)
   library(DOSE)
   library(ggplot2) 
   library(ggrepel) 
