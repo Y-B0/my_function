@@ -8,7 +8,8 @@ go_demo<-function(genesymbol,ntop=10,plot=T,species=org.Hs.eg.db){
   library(ggplot2) 
   library(ggrepel) 
   library(ggsci)
-  id_list <- mapIds(species,genesymbol,"ENTREZID","SYMBOL")
+  try({
+    id_list <- mapIds(species,genesymbol,"ENTREZID","SYMBOL")
   id_list <- na.omit(id_list)
   
   go <- enrichGO(gene = id_list,
@@ -42,4 +43,5 @@ go_demo<-function(genesymbol,ntop=10,plot=T,species=org.Hs.eg.db){
       #ggsave(go_bar,filename = "GO_Barplot.pdf",width = 9,height = 7)
   }
   return(list(go=go.res,plot=go_bar))
+  })
 }
