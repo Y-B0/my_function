@@ -27,7 +27,6 @@ limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,r
   exp <- exp[, rownames(design)]
   
   fit <- lmFit(exp, design)
-  compared<-"W24 - baseline"
   contrast.matrix <- makeContrasts(contrasts=compared, levels = colnames(design))  # 修改这里
   
   fit2 <- contrasts.fit(fit, contrast.matrix)
