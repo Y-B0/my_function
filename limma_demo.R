@@ -11,6 +11,7 @@ limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,r
   }
   
   if (rna.count==T) {
+    design <- model.matrix(~0 + factor(group[, 2]))
     exp<- voom(exp,design,normalize="quantile")$E
   }
   
@@ -32,5 +33,5 @@ limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,r
   fit2 <- contrasts.fit(fit, contrast.matrix)
   fit2 <- eBayes(fit2)
   output <- topTable(fit2, coef = compared, n = Inf)
-  return(output)
+  return(cbind(exp,output))
 }
