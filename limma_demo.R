@@ -1,4 +1,4 @@
-limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,rna.count=F,symbol.name="SYMBOL"){
+limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,rna.count=F,symbol.name="SYMBOL",file.name=NULL){
   ## exp is expression data (if merge==T,exp need a col to contain gene symbol).
   ## group can be multi group ,and first col is sample name; second col is condition; coef, and multi used to select multi group, keep in mind, control sample priority.
   ## compared used to identify which group vs which group (usually <conventional> - <control>). also use for multi group condition.
@@ -33,5 +33,10 @@ limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,r
   fit2 <- contrasts.fit(fit, contrast.matrix)
   fit2 <- eBayes(fit2)
   output <- topTable(fit2, coef = compared, n = Inf, sort.by = "none")
+
+ if (!is.NULL(file.name)) {
+    write.table(data.frame(Symbol=rownames(output),output,exp),file = file.name,sep = "\t",quote = F,row.names = F,col.names = T)
+ }
   return(cbind(output,exp))
+  
 }
