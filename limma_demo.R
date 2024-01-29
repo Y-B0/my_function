@@ -32,6 +32,6 @@ limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,r
   
   fit2 <- contrasts.fit(fit, contrast.matrix)
   fit2 <- eBayes(fit2)
-  output <- topTable(fit2, coef = compared, n = Inf)
+  output <- topTable(fit2, coef = compared, n = Inf, sort.by = "none")
   return(cbind(output,exp))
 }
