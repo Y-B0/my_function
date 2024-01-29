@@ -34,7 +34,7 @@ limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,r
   fit2 <- eBayes(fit2)
   output <- topTable(fit2, coef = compared, n = Inf, sort.by = "none")
 
- if (!is.NULL(file.name)) {
+ if (!is.null(file.name)) {
     write.table(data.frame(Symbol=rownames(output),output,exp),file = file.name,sep = "\t",quote = F,row.names = F,col.names = T)
  }
   return(cbind(output,exp))
