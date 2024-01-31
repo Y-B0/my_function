@@ -42,6 +42,6 @@ go_demo<-function(genesymbol,ntop=10,plot=T,species=org.Hs.eg.db){
             plot.margin = unit(c(0.5,0.5,0.5,0.5),"cm"))+scale_fill_aaas()
       #ggsave(go_bar,filename = "GO_Barplot.pdf",width = 9,height = 7)
   }
-  return(list(go=go.res,plot=go_bar))
+  return(list(go=go,plot=go_bar))
   })
 }
