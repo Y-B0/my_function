@@ -1,4 +1,5 @@
 limma_after_normalized<-function(exp,group,compared,normalize=F,log2=F,merge=F,rna.count=F,symbol.name="SYMBOL",file.name=NULL){
+  library(limma)
   ## exp is expression data (if merge==T,exp need a col to contain gene symbol).
   ## group can be multi group ,and first col is sample name; second col is condition; coef, and multi used to select multi group, keep in mind, control sample priority.
   ## compared used to identify which group vs which group (usually <conventional> - <control>). also use for multi group condition.
