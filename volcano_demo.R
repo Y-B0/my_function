@@ -1,7 +1,7 @@
 volcano_plot<-function(x, p.name = "P.Value", fc.name = "logFC", p.value = 0.05, fc.value = 0.585,file.name=NULL,plot.name=NULL) {
   library(ggplot2)
 
-  x$sig[(x[, p.name] > p.value | x[, p.name] == "NA") | (x[, fc.name] < fc.value) & x[, fc.name] > -fc.value] <- "No"
+  x$sig[(x[, p.name] > p.value | x[, p.name] == "NA") | (x[, fc.name] < fc.value) & x[, fc.name] > -fc.value] <- "Stable"
   x$sig[x[, p.name] <= p.value & x[, fc.name] >= fc.value] <- "Up"
   x$sig[x[, p.name] <= p.value & x[, fc.name] <= -fc.value] <- "Down"
 
