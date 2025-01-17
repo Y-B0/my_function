@@ -11,10 +11,10 @@ multicox<-function(expr,covariates){
   high=signif(x$conf.int[,4],2)
   HR.merge <- paste0(HR, " (", low, "-", high, ")")
   multi_res=data.frame(
-    Model=covariates,
+    Module=covariates,
     HR=HR,
     HR.lower=low,
-    HR.high=high,
+    HR.upper=high,
     HR.merge=HR.merge,
     p.value=pvalue,
     stringsAsFactors = F)
